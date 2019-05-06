@@ -1,6 +1,6 @@
 module.exports = class Food {
   constructor(foodData) {
-    this.food_name = foodData.food_name,
+    this.name = foodData.food_name,
     this.qty = foodData.serving_qty,
     this.serving_unit = foodData.serving_unit,
     this.serving_weight_grams = foodData.serving_weight_grams,

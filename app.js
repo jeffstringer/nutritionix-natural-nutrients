@@ -16,10 +16,12 @@ if (argv.query) {
   function callback(error, response, body) {
     if (!error && response.statusCode == 200) {
       let foodData = JSON.parse(response.body)['foods']
+      foods = []
       foodData.forEach((foodDatum) => {
         let food = new Food(foodDatum)
-        console.log(food)
+        foods.push(food)
       })
+      console.table(foods)
     } else {
       console.log('status', response.statusCode)
       console.log('error', error)
