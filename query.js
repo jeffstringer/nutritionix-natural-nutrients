@@ -1,11 +1,10 @@
-const prog = require('yargs').argv
 const Food = require('./models/food')
 const request = require('request')
 
 let apiCall = (query) => {
   let options = {
     url: 'https://trackapi.nutritionix.com/v2/natural/nutrients',
-    form: {query: argv.query, locale: 'en_US'},
+    form: {query: query, locale: 'en_US'},
     headers: {
       'x-app-id': process.env.NUTRITIONIX_APP_ID,
       'x-app-key': process.env.NUTRITIONIX_APP_KEY,
