@@ -1,3 +1,5 @@
+'use strict'
+
 const Food = require('./models/food')
 const request = require('request')
 
@@ -15,7 +17,7 @@ let apiCall = (query) => {
   function callback(error, response, body) {
     if (!error && response.statusCode == 200) {
       let foodData = JSON.parse(response.body)['foods']
-      foods = []
+      let foods = []
       foodData.forEach((foodDatum) => {
         let food = new Food(foodDatum)
         foods.push(food)

@@ -1,3 +1,5 @@
+'use strict'
+
 const program = require('commander')
 const query = require('./query')
 
