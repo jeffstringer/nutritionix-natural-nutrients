@@ -1,5 +1,5 @@
 module.exports = class Food {
-  constructor(foodData) {
+  constructor (foodData) {
     this.name = foodData.food_name,
     this.qty = foodData.serving_qty,
     this.servingUnit = foodData.serving_unit,

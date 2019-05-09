@@ -1,6 +1,7 @@
 const Food = require('../models/food')
 
-let foodData = { food_name: 'bananas',
+let foodData = {
+  food_name: 'bananas',
   brand_name: null,
   serving_qty: 2,
   serving_unit: 'medium (7" to 7-7/8" long)',
