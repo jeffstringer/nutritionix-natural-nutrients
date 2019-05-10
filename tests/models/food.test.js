@@ -1,4 +1,4 @@
-const Food = require('../models/food')
+const Food = require('../../models/food')
 
 let foodData = {
   food_name: 'bananas',

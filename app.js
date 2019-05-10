@@ -1,21 +1,10 @@
 'use strict'
 
 const express = require('express')
-const request = require('request')
-const Food = require('./models/food')
+const nutritionix = require('./src/nutritionix')
 const port = 3000
 const app = express()
 app.listen(port, () => console.log(`\n Nutritionix Natural Nutrients app listening on port ${port} :) \n`))
-
-const Presenter = require('yayson')().Presenter
-
-class FoodsPresenter extends Presenter {}
-FoodsPresenter.prototype.type = 'food'
-
-FoodsPresenter.prototype.attributes = function() {
-  return Presenter.prototype.attributes.apply(this, arguments)
-}
-
 
 /*
 > let description = 'for breakfast i had 1/2 cup oatmeal 1/2 cup yogurt 1/2 cup milk 2 tablespoons nutella 1 tsp cocoa 2 tsp almond butter 2 bananas 2 cups of coffee'
@@ -35,25 +24,7 @@ app.post('/getdata', (req, res, next) => {
         'x-remote-user-id': '0'
       }
     }
-
-    request.post(options, (err, response, body) => {
-      if (err) {
-        response.json(err)
-        console.log('status', response.statusCode)
-        console.log('error', err)
-      } else {
-        let foodData = JSON.parse(body)['foods']
-        let foods = []
-        let presenterFoods = []
-        foodData.forEach((foodDatum) => {
-          let food = new Food(foodDatum)
-          foods.push(food)
-          presenterFoods.push(FoodsPresenter.render(food))
-        })
-        console.table(foods)
-        res.json({foods: presenterFoods})
-      }
-    })
+    nutritionix.naturalNutrients(options, query, res)
   } else {
     res.status(400).json({ error: '400: Malformed Query' })
   }
